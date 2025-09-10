@@ -23,7 +23,7 @@ app.use(cors());
 app.get('/api/datos', async (req, res) => {
     try {
         await sql.connect(configDB);
-        const resultado = await sql.query`SELECT * FROM Empleado`; 
+        const resultado = await sql.query`EXEC Empleados_lista`; 
         res.json(resultado.recordset);
     } catch (err) {
         console.error('Error al conectar a la base de datos:', err);
@@ -37,3 +37,4 @@ app.get('/api/datos', async (req, res) => {
 app.listen(puerto, () => {
     console.log("Servidor de la API escuchando en http://localhost:${puerto}");
 });
+
